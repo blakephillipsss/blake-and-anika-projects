@@ -1,15 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <LoginButtons />
+    <DbItems />
+  </div>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LoginButtons from './components/LoginButtons.vue';
+import DbItems from './components/DbItems.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    LoginButtons,
+    DbItems
   }
 }
 </script>
