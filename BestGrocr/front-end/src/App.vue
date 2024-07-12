@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import LoginButtons from './components/LoginButtons.vue';
-import DbItems from './components/DbItems.vue';
+import LoginButtons from './components/LoginComponent.vue';
+import DbItems from './components/ItemsComponent.vue';
 
 export default {
   name: 'App',
