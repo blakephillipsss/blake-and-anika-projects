@@ -1,6 +1,6 @@
 // src/firebase/firestoreUtils.js
 import { db } from './firebaseConfig';
-import { collection, addDoc, doc, getDocs, updateDoc, deleteDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDocs, updateDoc, deleteDoc} from 'firebase/firestore';
 
 // Add an item for a user
 export async function addItem(userId, item) {
@@ -46,4 +46,32 @@ export async function deleteItem(userId, itemId) {
   } catch (e) {
     console.error('Error deleting item: ', e);
   }
+}
+
+// Add a new grocer
+export async function addGrocer(userId, grocer) {
+  const grocersCollection = collection(doc(db, 'users', userId), 'grocers');
+  const docRef = await addDoc(grocersCollection, { name: grocer });
+  return docRef.id;
+}
+
+// Fetch grocers for a user
+export async function getGrocers(userId) {
+  const grocersCollection = collection(doc(db, 'users', userId), 'grocers');
+  const querySnapshot = await getDocs(grocersCollection);
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+}
+
+// Add a new department
+export async function addDepartment(userId, department) {
+  const departmentsCollection = collection(doc(db, 'users', userId), 'departments');
+  const docRef = await addDoc(departmentsCollection, { name: department });
+  return docRef.id;
+}
+
+// Fetch departments for a user
+export async function getDepartments(userId) {
+  const departmentsCollection = collection(doc(db, 'users', userId), 'departments');
+  const querySnapshot = await getDocs(departmentsCollection);
+  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
